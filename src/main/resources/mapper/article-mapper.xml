@@ -65,10 +65,10 @@
         # MyBatis Dynamic SQL
         <where>
             <if test="title != null">
-                title = #{title}
+                title like "%"#{title}"%"
             </if>
             <if test="content != null">
-                AND content = #{content}
+                AND content like  "%"#{content}"%"
             </if>
         </where>
     </select>
