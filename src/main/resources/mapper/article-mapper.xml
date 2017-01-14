@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="article">
+    <insert id="add" parameterType="article" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO exam.article (
+    title, 
+    zhaiyao, 
+    content, 
+    time
+        )
+        VALUES (
+    #{title}, 
+    #{zhaiyao}, 
+    #{content}, 
+    #{time}
+        );
+    </insert>
+    <delete id="remove">
+        DELETE FROM exam.article
+        WHERE article.id = #{id}
+    </delete>
+    <update id="modify">
+        UPDATE exam.article
+        SET
+    title = #{title}, 
+    zhaiyao = #{zhaiyao}, 
+    content = #{content}, 
+    time = #{time}
+        WHERE article.id = #{id}
+    </update>
+    <select id="list" resultType="article">
+        SELECT *
+        FROM exam.article
+        ORDER BY id
+    </select>
+    <select id="query" parameterType="article" resultType="article">
+        SELECT *
+        FROM exam.article
+        <where>
+            <if test="id != null and id != ''">
+            article.id = #{id}
+            </if>
+            <if test="title != null and title != ''"> AND title LIKE "%"#{title}"%"</if>
+            <if test="zhaiyao != null and zhaiyao != ''"> AND zhaiyao LIKE "%"#{zhaiyao}"%"</if>
+            <if test="content != null and content != ''"> AND content LIKE "%"#{content}"%"</if>
+            <if test="time != null and time != ''"> AND time LIKE "%"#{time}"%"</if>
+        </where>
+    </select>
+    <select id="search" resultType="article">
+        SELECT *
+        FROM exam.article
+        WHERE article.id = #{id}
+    </select>
+    <select id="queryneirong" parameterType="int" resultType="article">
+        SELECT *
+        FROM exam.article
+        WHERE article.id = #{id}
+    </select>
+
+
+
+
+</mapper>
