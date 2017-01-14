@@ -17,7 +17,7 @@
     <c:forEach var="article" items="${sessionScope.article}" varStatus="vs">
         <tr>
             <td>${article.zhaiyao}</td>
-            <td>${article.content}</td>
+            <td><textarea cols="30" rows="10">${article.content}</textarea></td>
         </tr>
     </c:forEach>
 </table>

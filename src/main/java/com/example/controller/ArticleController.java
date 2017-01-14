@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.model.Article;
 import com.example.service.ArticleService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("article")
 public class ArticleController extends BaseController {
@@ -56,5 +59,22 @@ public class ArticleController extends BaseController {
     private String query(@PathVariable("id") Integer id) {
         getSession().setAttribute("article", articleService.queryAll("queryneirong",id));
         return "redirect:/article/content.jsp";
+    }
+    @RequestMapping("queryArticleByTitleOrContent")
+    private String query(String title,String content) {
+        if (title.trim().isEmpty()) {
+            title = null;
+        }
+        if (content.trim().isEmpty()) {
+            content = null;
+        }
+        System.out.println(title + ", " + content);
+        Map<String, String> map = new HashMap<>();
+        map.put("title", title);
+        map.put("content", content);
+        getSession().setAttribute("pagination", articleService.list(1));
+
+        getSession().setAttribute("article", articleService.queryAll("queryArticleByTitleOrContent",map));
+        return "redirect:/user.jsp";
     }
 }

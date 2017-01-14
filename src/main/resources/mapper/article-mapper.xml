@@ -59,6 +59,19 @@
         FROM exam.article
         WHERE article.id = #{id}
     </select>
+    <select id="queryArticleByTitleOrContent" parameterType="hashmap"  resultType="article">
+        SELECT *
+        FROM exam.article
+        # MyBatis Dynamic SQL
+        <where>
+            <if test="title != null">
+                title = #{title}
+            </if>
+            <if test="content != null">
+                AND content = #{content}
+            </if>
+        </where>
+    </select>
 
 
 

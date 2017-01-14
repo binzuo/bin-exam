@@ -5,13 +5,13 @@
         <title>article add page</title>
     </head>
     <body>
-        <h1>ADD Article</h1>
+        <h1>发布新文章</h1>
         <form action="${ctx}/article/add" method="post">
             <input name="title" placeholder="TITLE"><br>
             <input name="zhaiyao" placeholder="ZHAIYAO"><br>
-            <input name="content" placeholder="CONTENT"><br>
+            <textarea name="content" placeholder="CONTENT"></textarea><br>
             <input name="time" placeholder="TIME"><br>
-            <input type="submit" value="ADD">
+            <input type="submit" value="发布">
         </form>
     </body>
 </html>
